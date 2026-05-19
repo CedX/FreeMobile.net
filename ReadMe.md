@@ -3,8 +3,8 @@ Send SMS messages to your [Free Mobile](https://mobile.free.fr) device,
 in [C#](https://learn.microsoft.com/en-us/dotnet/csharp) and [PowerShell](https://learn.microsoft.com/en-us/powershell).
 
 ## Documentation
-- [User guide](https://github.com/CedX/FreeMobile.net/tree/main/docs)
-- [Examples](https://github.com/CedX/FreeMobile.net/tree/main/example)
+- [User guide](https://github.com/CedX/FreeMobile.net/tree/main/Documentation)
+- [Examples](https://github.com/CedX/FreeMobile.net/tree/main/Examples)
 
 ## Development
 - [Git repository](https://github.com/CedX/FreeMobile.net)

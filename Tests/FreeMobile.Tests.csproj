@@ -13,7 +13,7 @@
 		<BaseOutputPath>obj</BaseOutputPath>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<OutDir>../bin</OutDir>
+		<OutDir>../Binaries</OutDir>
 		<RootNamespace>Belin.FreeMobile</RootNamespace>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 		<TargetFramework>net10.0</TargetFramework>
@@ -22,7 +22,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.*" />
 		<PackageReference Include="MSTest" Version="4.*" />
-		<ProjectReference Include="../src/FreeMobile.csproj" />
+		<ProjectReference Include="../Sources/FreeMobile.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
