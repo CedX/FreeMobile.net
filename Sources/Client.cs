@@ -26,6 +26,11 @@ public class Client(NetworkCredential credential, Uri? baseUrl = null) {
 	public NetworkCredential Credential => credential;
 
 	/// <summary>
+	/// The user agent string to use when making requests.
+	/// </summary>
+	public string UserAgent { get; set; } = $".NET/{Environment.Version} | Belin.FreeMobile/{Version.ToString(3)}";
+
+	/// <summary>
 	/// Creates a new client.
 	/// </summary>
 	/// <param name="credential">The Free Mobile user name and password.</param>
@@ -76,7 +81,7 @@ public class Client(NetworkCredential credential, Uri? baseUrl = null) {
 		});
 
 		using var httpClient = new HttpClient();
-		httpClient.DefaultRequestHeaders.Add("User-Agent", $".NET/{Environment.Version} | Belin.FreeMobile/{Version.ToString(3)}");
+		httpClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
 		var url = new Uri(BaseUrl, $"sendmsg?{await query.ReadAsStringAsync(cancellationToken)}");
 		using var response = await httpClient.GetAsync(url, cancellationToken);
