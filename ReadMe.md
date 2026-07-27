@@ -1,6 +1,6 @@
 # Free Mobile for .NET
 Send SMS messages to your [Free Mobile](https://mobile.free.fr) device,
-in [C#](https://learn.microsoft.com/en-us/dotnet/csharp) and [PowerShell](https://learn.microsoft.com/en-us/powershell).
+in [C#](https://learn.microsoft.com/en-us/dotnet/csharp).
 
 ## Documentation
 - [User guide](https://github.com/CedX/FreeMobile.net/tree/main/Documentation)
