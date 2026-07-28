@@ -80,7 +80,7 @@ public class Client(NetworkCredential credential, Uri? baseUrl = null) {
 			["user"] = credential.UserName
 		});
 
-		using var httpClient = new HttpClient();
+		using var httpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(1) };
 		httpClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
 		var url = new Uri(BaseUrl, $"sendmsg?{await query.ReadAsStringAsync(cancellationToken)}");
