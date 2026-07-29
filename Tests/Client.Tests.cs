@@ -10,7 +10,7 @@ public sealed class ClientTests(TestContext testContext) {
 	[TestMethod]
 	public async Task NetworkError() {
 		// It should throw a `HttpRequestException` if a network error occurred.
-		var client = new Client("anonymous", "secret", "http://localhost:666");
+		var client = new Client("anonymous", "secret") { BaseUrl = new Uri("http://localhost:666") };
 		await ThrowsAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
 	}
 
