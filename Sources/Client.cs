@@ -1,6 +1,7 @@
 namespace Belin.FreeMobile;
 
 using System.Net;
+using System.Web;
 
 /// <summary>
 /// Sends messages by SMS to a <see href="https://mobile.free.fr">FreeMobile</see> account.
@@ -53,16 +54,15 @@ public class Client(NetworkCredential credential) {
 	/// <returns>Completes when the message has been sent.</returns>
 	public async Task SendMessageAsync(string text, CancellationToken cancellationToken = default) {
 		var trimmedText = text.Trim();
-		using var query = new FormUrlEncodedContent(new Dictionary<string, string> {
-			["msg"] = trimmedText.Length > 160 ? trimmedText[0..160] : trimmedText,
-			["pass"] = credential.Password,
-			["user"] = credential.UserName
-		});
+		var queryString = HttpUtility.ParseQueryString("");
+		queryString.Add("msg", trimmedText.Length > 160 ? trimmedText[0..160] : trimmedText);
+		queryString.Add("pass", credential.Password);
+		queryString.Add("user", credential.UserName);
 
-		using var httpClient = new HttpClient { BaseAddress = BaseUrl, Timeout = TimeSpan.FromMinutes(1) };
-		httpClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+		using var client = new HttpClient { BaseAddress = BaseUrl, Timeout = TimeSpan.FromMinutes(1) };
+		client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-		using var response = await httpClient.GetAsync($"sendmsg?{await query.ReadAsStringAsync(cancellationToken)}", cancellationToken);
+		using var response = await client.GetAsync($"sendmsg?{queryString}", cancellationToken);
 		response.EnsureSuccessStatusCode();
 	}
 }
