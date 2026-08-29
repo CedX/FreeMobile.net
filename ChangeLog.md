@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [5.2.1](https://github.com/CedX/FreeMobile.net/compare/v5.2.0...v5.2.1)
+- Added a package icon.
+
 ## Version [5.2.0](https://github.com/CedX/FreeMobile.net/compare/v5.1.0...v5.2.0)
 - Added the `Client.UserAgent` property.
 
