@@ -11,14 +11,14 @@ public sealed class ClientTests(TestContext testContext) {
 	public async Task NetworkError() {
 		// It should throw a `HttpRequestException` if a network error occurred.
 		var client = new Client("anonymous", "secret") { BaseUrl = new Uri("http://localhost:666") };
-		await ThrowsAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
+		await Assert.ThrowsAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
 	}
 
 	[TestMethod]
 	public async Task InvalidCredentials() {
 		// It should throw a `HttpRequestException` if the credentials are invalid.
 		var client = new Client("anonymous", "secret");
-		await ThrowsAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
+		await Assert.ThrowsAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
 	}
 
 	[TestMethod]
