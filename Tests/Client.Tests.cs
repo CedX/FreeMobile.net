@@ -5,20 +5,20 @@ namespace Belin.FreeMobile;
 /// </summary>
 /// <param name="testContext">The test context.</param>
 [TestClass]
-public sealed class ClientTests(TestContext testContext) {
+public class ClientTests(TestContext testContext) {
 
 	[TestMethod]
 	public async Task NetworkError() {
 		// It should throw a `HttpRequestException` if a network error occurred.
 		using var client = new Client("anonymous", "secret") { BaseUrl = new Uri("http://localhost:666") };
-		await Assert.ThrowsAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
+		await Should.ThrowAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
 	}
 
 	[TestMethod]
 	public async Task InvalidCredentials() {
 		// It should throw a `HttpRequestException` if the credentials are invalid.
 		using var client = new Client("anonymous", "secret");
-		await Assert.ThrowsAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
+		await Should.ThrowAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
 	}
 
 	[TestMethod]
