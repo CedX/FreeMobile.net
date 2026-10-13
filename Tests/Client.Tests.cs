@@ -8,23 +8,23 @@ namespace Belin.FreeMobile;
 public class ClientTests(TestContext testContext) {
 
 	[TestMethod]
-	public async Task NetworkError() {
+	public void NetworkError() {
 		// It should throw a `HttpRequestException` if a network error occurred.
 		using var client = new Client("anonymous", "secret") { BaseUrl = new Uri("http://localhost:666") };
-		await Should.ThrowAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
+		Should.Throw<HttpRequestException>(() => client.SendMessage("Hello World!", testContext.CancellationToken));
 	}
 
 	[TestMethod]
-	public async Task InvalidCredentials() {
+	public void InvalidCredentials() {
 		// It should throw a `HttpRequestException` if the credentials are invalid.
 		using var client = new Client("anonymous", "secret");
-		await Should.ThrowAsync<HttpRequestException>(() => client.SendMessageAsync("Hello World!", testContext.CancellationToken));
+		Should.Throw<HttpRequestException>(() => client.SendMessage("Hello World!", testContext.CancellationToken));
 	}
 
 	[TestMethod]
-	public async Task ValidCredentials() {
+	public void ValidCredentials() {
 		// It should send SMS messages if the credentials are valid.
 		using var client = new Client(Environment.GetEnvironmentVariable("FREEMOBILE_ACCOUNT")!, Environment.GetEnvironmentVariable("FREEMOBILE_API_KEY")!);
-		await client.SendMessageAsync("Hello Cédric, from .NET!", testContext.CancellationToken);
+		client.SendMessage("Hello Cédric, from .NET!", testContext.CancellationToken);
 	}
 }
